@@ -178,7 +178,7 @@ export default function Home() {
     };
     const { data, error: dbError } = await supabase
       .from("alumnos")
-      .insert(nuevoAlumno)
+      .insert(nuevoAlumno as any)
       .select('id, created_at, nombre, "Fecha_vencimiento", cuota_al_dia')
       .single();
 
@@ -235,7 +235,7 @@ export default function Home() {
     };
     const { data, error: dbError } = await supabase
       .from("alumnos")
-      .update(alumnoActualizadoPayload)
+      .update(alumnoActualizadoPayload as any)
       .eq("id", editandoId)
       .select('id, created_at, nombre, "Fecha_vencimiento", cuota_al_dia')
       .single();
