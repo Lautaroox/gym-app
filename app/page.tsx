@@ -40,6 +40,171 @@ const formatoFecha = new Intl.DateTimeFormat("es", {
   year: "numeric",
 });
 
+function inicialNombre(nombre: string) {
+  const t = nombre.trim();
+  if (!t) return "?";
+  return t.charAt(0).toLocaleUpperCase("es");
+}
+
+function LogoMark() {
+  return (
+    <div
+      className="flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-[#007AFF] shadow-lg shadow-[#007AFF]/35 transition-transform duration-300 hover:scale-[1.02]"
+      aria-hidden
+    >
+      <svg
+        className="h-9 w-9 text-white"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 12h16M7 8v8M17 8v8M5 6h2M5 18h2M17 6h2M17 18h2" />
+      </svg>
+    </div>
+  );
+}
+
+function IconSignOut() {
+  return (
+    <svg
+      className="h-5 w-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+    </svg>
+  );
+}
+
+function IconPencil() {
+  return (
+    <svg
+      className="h-[18px] w-[18px]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#007AFF"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+}
+
+function IconTrash() {
+  return (
+    <svg
+      className="h-[18px] w-[18px]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z" />
+    </svg>
+  );
+}
+
+function IconUsers() {
+  return (
+    <svg
+      className="h-5 w-5 text-[#007AFF]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+function IconCheckCircle() {
+  return (
+    <svg
+      className="h-5 w-5 text-[#34C759]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  );
+}
+
+function IconAlertCircle() {
+  return (
+    <svg
+      className="h-5 w-5 text-[#FF3B30]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="12" />
+      <line x1="12" y1="16" x2="12.01" y2="16" />
+    </svg>
+  );
+}
+
+function IconCalendar() {
+  return (
+    <svg
+      className="h-4 w-4 shrink-0 text-[#FF9500]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+
+function IconPlus() {
+  return (
+    <svg
+      className="h-5 w-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const supabase = getSupabaseBrowserClient();
 
@@ -281,8 +446,8 @@ export default function Home() {
     setGuardando(false);
   }
 
-  const inputClass =
-    "rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none ring-zinc-400/30 placeholder:text-zinc-400 focus:border-zinc-400 focus:ring-2 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:focus:border-zinc-500";
+  const fieldClass =
+    "w-full rounded-[12px] border-0 bg-[#E5E5EA] px-4 py-3.5 text-[15px] text-[#1C1C1E] outline-none transition-all placeholder:text-[#8E8E93] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,122,255,0.22)] disabled:opacity-45";
   const totalAlumnos = alumnos.length;
   const alumnosAlDia = alumnos.filter((a) => a.cuotaAlDia).length;
   const alumnosVencidos = totalAlumnos - alumnosAlDia;
@@ -296,8 +461,8 @@ export default function Home() {
 
   if (verificandoSesion) {
     return (
-      <div className="min-h-full bg-zinc-100 px-4 py-10 dark:bg-zinc-950">
-        <div className="mx-auto max-w-md rounded-xl border border-zinc-200 bg-white p-6 text-center text-sm text-zinc-600 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+      <div className="flex min-h-full items-center justify-center bg-[#F2F2F7] px-6 py-16">
+        <div className="rounded-[20px] bg-white px-8 py-6 text-center text-[15px] text-[#8E8E93] shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
           Verificando sesión...
         </div>
       </div>
@@ -306,26 +471,38 @@ export default function Home() {
 
   if (!session) {
     return (
-      <div className="min-h-full bg-zinc-100 px-4 py-10 dark:bg-zinc-950">
-        <div className="mx-auto max-w-md rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <h1 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <div className="flex min-h-full flex-col items-center justify-center bg-[#F2F2F7] px-6 py-12">
+        <div className="mb-8 flex flex-col items-center gap-3">
+          <LogoMark />
+          <div className="text-center">
+            <h1 className="text-[28px] font-bold tracking-tight text-[#1C1C1E]">
+              Gimnasio
+            </h1>
+            <p className="mt-1 text-[15px] text-[#8E8E93]">
+              Panel del dueño
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full max-w-[380px] rounded-[22px] bg-white p-8 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
+          <h2 className="text-center text-[20px] font-semibold text-[#1C1C1E]">
             Iniciar sesión
-          </h1>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Acceso para el dueño del gimnasio
+          </h2>
+          <p className="mt-1 text-center text-[13px] text-[#8E8E93]">
+            Ingresá con tu email y contraseña
           </p>
 
           {error ? (
-            <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300">
+            <p className="mt-5 rounded-[14px] bg-[#FF3B30]/10 px-4 py-3 text-center text-[13px] font-medium text-[#D70015]">
               {error}
             </p>
           ) : null}
 
-          <form onSubmit={iniciarSesion} className="mt-5 space-y-4">
+          <form onSubmit={iniciarSesion} className="mt-6 space-y-5">
             <div>
               <label
                 htmlFor="login-email"
-                className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
               >
                 Email
               </label>
@@ -334,7 +511,7 @@ export default function Home() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full ${inputClass}`}
+                className={fieldClass}
                 autoComplete="email"
                 required
                 disabled={authCargando}
@@ -343,7 +520,7 @@ export default function Home() {
             <div>
               <label
                 htmlFor="login-password"
-                className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
               >
                 Contraseña
               </label>
@@ -352,7 +529,7 @@ export default function Home() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full ${inputClass}`}
+                className={fieldClass}
                 autoComplete="current-password"
                 required
                 disabled={authCargando}
@@ -361,7 +538,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={authCargando}
-              className="w-full rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:opacity-60 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+              className="w-full rounded-full bg-[#007AFF] py-3.5 text-[16px] font-semibold text-white shadow-lg shadow-[#007AFF]/30 transition duration-200 hover:bg-[#0066DD] hover:shadow-xl hover:shadow-[#007AFF]/35 active:scale-[0.98] disabled:opacity-50"
             >
               {authCargando ? "Ingresando..." : "Ingresar"}
             </button>
@@ -372,42 +549,44 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-full bg-zinc-100 px-4 py-10 dark:bg-zinc-950">
-      <div className="mx-auto max-w-3xl">
-        <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div className="min-h-full bg-[#F2F2F7] px-4 pb-12 pt-6 sm:px-6">
+      <div className="mx-auto max-w-lg">
+        <header className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+            <h1 className="text-[28px] font-bold tracking-tight text-[#1C1C1E]">
               Alumnos
             </h1>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Cuotas y fechas de vencimiento
+            <p className="mt-1 text-[15px] text-[#8E8E93]">
+              Cuotas y vencimientos
             </p>
-            <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
-              Sesión: {session.user.email}
+            <p className="mt-2 text-[13px] text-[#8E8E93]">
+              {session.user.email}
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={toggleFormularioAgregar}
               disabled={guardando || authCargando}
-              className="shrink-0 rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+              className="inline-flex items-center gap-2 rounded-full bg-[#007AFF] px-5 py-2.5 text-[15px] font-semibold text-white shadow-lg shadow-[#007AFF]/28 transition duration-200 hover:bg-[#0066DD] hover:shadow-xl hover:shadow-[#007AFF]/32 active:scale-[0.98] disabled:opacity-45"
             >
-              {formAbierto ? "Cerrar formulario" : "Agregar alumno"}
+              <IconPlus />
+              {formAbierto ? "Cerrar" : "Agregar"}
             </button>
             <button
               type="button"
               onClick={cerrarSesion}
               disabled={authCargando || guardando}
-              className="shrink-0 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-4 py-2.5 text-[15px] font-semibold text-[#007AFF] shadow-sm transition duration-200 hover:bg-white hover:shadow-md active:scale-[0.98] disabled:opacity-45"
             >
-              {authCargando ? "Cerrando..." : "Cerrar sesión"}
+              <IconSignOut />
+              {authCargando ? "..." : "Salir"}
             </button>
           </div>
         </header>
 
         {error ? (
-          <p className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300">
+          <p className="mb-5 rounded-[16px] bg-[#FF3B30]/10 px-4 py-3 text-center text-[14px] font-medium text-[#D70015]">
             {error}
           </p>
         ) : null}
@@ -415,16 +594,16 @@ export default function Home() {
         {formAbierto && (
           <form
             onSubmit={guardarNuevo}
-            className="mb-6 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+            className="mb-8 rounded-[20px] bg-white p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)]"
           >
-            <h2 className="mb-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+            <h2 className="text-[17px] font-semibold text-[#1C1C1E]">
               Nuevo alumno
             </h2>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
-              <div className="flex-1">
+            <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-end">
+              <div className="min-w-0 flex-1">
                 <label
                   htmlFor="nombre"
-                  className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                  className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
                 >
                   Nombre
                 </label>
@@ -434,35 +613,35 @@ export default function Home() {
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   autoComplete="name"
-                  className={`w-full ${inputClass}`}
+                  className={fieldClass}
                   placeholder="Nombre completo"
                   required
                   disabled={guardando}
                 />
               </div>
-              <div className="sm:w-48">
+              <div className="sm:w-44">
                 <label
                   htmlFor="fecha"
-                  className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                  className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
                 >
-                  Vencimiento de cuota
+                  Vencimiento
                 </label>
                 <input
                   id="fecha"
                   type="date"
                   value={fechaVencimiento}
                   onChange={(e) => setFechaVencimiento(e.target.value)}
-                  className={`w-full ${inputClass}`}
+                  className={fieldClass}
                   required
                   disabled={guardando}
                 />
               </div>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-3">
               <button
                 type="submit"
                 disabled={guardando}
-                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+                className="rounded-full bg-[#007AFF] px-6 py-2.5 text-[15px] font-semibold text-white shadow-md shadow-[#007AFF]/25 transition duration-200 hover:bg-[#0066DD] active:scale-[0.98] disabled:opacity-45"
               >
                 {guardando ? "Guardando..." : "Guardar"}
               </button>
@@ -470,7 +649,7 @@ export default function Home() {
                 type="button"
                 onClick={cancelarFormulario}
                 disabled={guardando}
-                className="rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                className="rounded-full border border-black/[0.08] bg-white px-6 py-2.5 text-[15px] font-semibold text-[#007AFF] transition duration-200 hover:bg-[#F2F2F7] active:scale-[0.98] disabled:opacity-45"
               >
                 Cancelar
               </button>
@@ -478,55 +657,67 @@ export default function Home() {
           </form>
         )}
 
-        <section className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-              Total alumnos
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+            <div className="flex items-start justify-between">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
+                Total
+              </p>
+              <IconUsers />
+            </div>
+            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#1C1C1E]">
               {totalAlumnos}
             </p>
           </div>
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 shadow-sm dark:border-emerald-900/40 dark:bg-emerald-950/30">
-            <p className="text-xs font-medium uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-              Cuota al día
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-emerald-800 dark:text-emerald-200">
+          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+            <div className="flex items-start justify-between">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
+                Al día
+              </p>
+              <IconCheckCircle />
+            </div>
+            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#34C759]">
               {alumnosAlDia}
             </p>
           </div>
-          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 shadow-sm dark:border-amber-900/40 dark:bg-amber-950/30">
-            <p className="text-xs font-medium uppercase tracking-wide text-amber-800 dark:text-amber-300">
-              Cuota vencida
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-amber-900 dark:text-amber-200">
+          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+            <div className="flex items-start justify-between">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
+                Vencida
+              </p>
+              <IconAlertCircle />
+            </div>
+            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#FF3B30]">
               {alumnosVencidos}
             </p>
           </div>
         </section>
 
-        <section className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 shadow-sm dark:border-amber-900/50 dark:bg-amber-950/30">
-          <h2 className="text-sm font-semibold text-amber-900 dark:text-amber-200">
-            Vencen en los próximos 7 días
-          </h2>
+        <section className="mb-8 rounded-[18px] border border-[#FFCC00]/35 bg-[#FFF9E6] p-5 shadow-[0_6px_28px_rgba(255,149,0,0.14)]">
+          <div className="flex items-center gap-2">
+            <IconCalendar />
+            <h2 className="text-[15px] font-semibold text-[#C93400]">
+              Próximos 7 días
+            </h2>
+          </div>
           {proximosAVencer.length === 0 ? (
-            <p className="mt-2 text-sm text-amber-800 dark:text-amber-300">
-              No hay alumnos con vencimiento próximo.
+            <p className="mt-3 text-[14px] leading-relaxed text-[#8E8E93]">
+              No hay vencimientos en la próxima semana.
             </p>
           ) : (
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-4 space-y-2">
               {proximosAVencer.map((a) => (
                 <li
                   key={a.id}
-                  className="flex flex-col gap-1 rounded-lg border border-amber-300/70 bg-white/75 px-3 py-2 text-sm dark:border-amber-800/70 dark:bg-amber-950/20 sm:flex-row sm:items-center sm:justify-between"
+                  className="flex flex-col gap-1 rounded-[14px] border border-[#FFCC00]/45 bg-white/90 px-4 py-3 text-[14px] shadow-sm transition hover:bg-white sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <span className="font-medium text-amber-900 dark:text-amber-200">
+                  <span className="font-semibold text-[#1C1C1E]">
                     {a.nombre}
                   </span>
-                  <span className="text-amber-800 dark:text-amber-300">
+                  <span className="text-[13px] text-[#C93400]">
                     {a.dias === 0
                       ? "Vence hoy"
-                      : `Vence en ${a.dias} día${a.dias === 1 ? "" : "s"} (${formatoFecha.format(new Date(a.fechaVencimiento + "T12:00:00"))})`}
+                      : `En ${a.dias} día${a.dias === 1 ? "" : "s"} · ${formatoFecha.format(new Date(a.fechaVencimiento + "T12:00:00"))}`}
                   </span>
                 </li>
               ))}
@@ -534,20 +725,23 @@ export default function Home() {
           )}
         </section>
 
-        <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="overflow-hidden rounded-[18px] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
           {cargando ? (
-            <div className="px-4 py-8 text-center text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="px-6 py-12 text-center text-[15px] text-[#8E8E93]">
               Cargando alumnos...
             </div>
           ) : null}
-          <ul className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <ul>
             {alumnos.map((a) => {
               const editando = editandoId === a.id;
 
               if (editando) {
                 const alDiaEdit = editFecha ? esCuotaAlDia(editFecha) : false;
                 return (
-                  <li key={a.id} className="px-4 py-4">
+                  <li
+                    key={a.id}
+                    className="border-b border-[#F2F2F7] px-4 py-5 last:border-0"
+                  >
                     <form
                       onSubmit={guardarEdicion}
                       className="flex flex-col gap-4"
@@ -556,7 +750,7 @@ export default function Home() {
                         <div className="min-w-0 flex-1">
                           <label
                             htmlFor="edit-nombre"
-                            className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                            className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
                           >
                             Nombre
                           </label>
@@ -566,44 +760,44 @@ export default function Home() {
                             value={editNombre}
                             onChange={(e) => setEditNombre(e.target.value)}
                             autoComplete="name"
-                            className={`w-full ${inputClass}`}
+                            className={fieldClass}
                             required
                             disabled={guardando}
                           />
                         </div>
-                        <div className="sm:w-48">
+                        <div className="sm:w-44">
                           <label
                             htmlFor="edit-fecha"
-                            className="mb-1.5 block text-xs font-medium text-zinc-600 dark:text-zinc-400"
+                            className="mb-2 block text-[13px] font-semibold text-[#8E8E93]"
                           >
-                            Vencimiento de cuota
+                            Vencimiento
                           </label>
                           <input
                             id="edit-fecha"
                             type="date"
                             value={editFecha}
                             onChange={(e) => setEditFecha(e.target.value)}
-                            className={`w-full ${inputClass}`}
+                            className={fieldClass}
                             required
                             disabled={guardando}
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="flex flex-wrap items-center gap-3 text-sm">
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex flex-wrap items-center gap-3 text-[14px]">
                           <span
                             className={
                               alDiaEdit
-                                ? "inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-800 ring-1 ring-emerald-600/15 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-500/25"
-                                : "inline-flex rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-900 ring-1 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-200 dark:ring-amber-500/25"
+                                ? "rounded-full bg-[#34C759]/14 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-[#248A3D]"
+                                : "rounded-full bg-[#FF3B30]/14 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-[#D70015]"
                             }
                           >
                             {editFecha ? (alDiaEdit ? "Al día" : "Vencida") : "—"}
                           </span>
                           {editFecha ? (
-                            <span className="tabular-nums text-zinc-600 dark:text-zinc-400">
-                              Vence:{" "}
-                              <span className="text-zinc-900 dark:text-zinc-200">
+                            <span className="tabular-nums text-[#8E8E93]">
+                              Vence{" "}
+                              <span className="font-medium text-[#1C1C1E]">
                                 {formatoFecha.format(new Date(editFecha + "T12:00:00"))}
                               </span>
                             </span>
@@ -613,15 +807,15 @@ export default function Home() {
                           <button
                             type="submit"
                             disabled={guardando}
-                            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+                            className="rounded-full bg-[#007AFF] px-5 py-2 text-[14px] font-semibold text-white shadow-md shadow-[#007AFF]/22 transition hover:bg-[#0066DD] active:scale-[0.98] disabled:opacity-45"
                           >
-                            {guardando ? "Guardando..." : "Guardar cambios"}
+                            {guardando ? "Guardando..." : "Guardar"}
                           </button>
                           <button
                             type="button"
                             onClick={cancelarEdicion}
                             disabled={guardando}
-                            className="rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                            className="rounded-full border border-black/[0.08] bg-[#F2F2F7] px-5 py-2 text-[14px] font-semibold text-[#007AFF] transition hover:bg-[#E5E5EA] active:scale-[0.98] disabled:opacity-45"
                           >
                             Cancelar
                           </button>
@@ -636,47 +830,48 @@ export default function Home() {
               return (
                 <li
                   key={a.id}
-                  className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                  className="flex items-center gap-3 border-b border-[#F2F2F7] px-4 py-3.5 transition-colors duration-200 last:border-0 hover:bg-[#F2F2F7]/60"
                 >
-                  <span className="min-w-0 font-medium text-zinc-900 dark:text-zinc-100">
-                    {a.nombre}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#007AFF]/12 text-[17px] font-semibold text-[#007AFF]">
+                    {inicialNombre(a.nombre)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[17px] font-semibold text-[#1C1C1E]">
+                      {a.nombre}
+                    </p>
+                    <p className="mt-0.5 text-[13px] text-[#8E8E93]">
+                      Vence{" "}
+                      {formatoFecha.format(new Date(a.fechaVencimiento + "T12:00:00"))}
+                    </p>
+                  </div>
+                  <span
+                    className={
+                      alDia
+                        ? "shrink-0 rounded-full bg-[#34C759]/14 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#248A3D]"
+                        : "shrink-0 rounded-full bg-[#FF3B30]/14 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#D70015]"
+                    }
+                  >
+                    {alDia ? "Al día" : "Vencida"}
                   </span>
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                    <div className="flex flex-wrap items-center gap-3 sm:justify-end">
-                      <span
-                        className={
-                          alDia
-                            ? "inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-800 ring-1 ring-emerald-600/15 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-500/25"
-                            : "inline-flex rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-900 ring-1 ring-amber-600/20 dark:bg-amber-950/50 dark:text-amber-200 dark:ring-amber-500/25"
-                        }
-                      >
-                        {alDia ? "Al día" : "Vencida"}
-                      </span>
-                      <span className="text-sm tabular-nums text-zinc-600 dark:text-zinc-400">
-                        Vence:{" "}
-                        <span className="text-zinc-900 dark:text-zinc-200">
-                          {formatoFecha.format(new Date(a.fechaVencimiento + "T12:00:00"))}
-                        </span>
-                      </span>
-                    </div>
-                    <div className="flex shrink-0 flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => empezarEdicion(a)}
-                        disabled={guardando}
-                        className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => eliminar(a.id)}
-                        disabled={guardando}
-                        className="rounded-lg border border-red-200 bg-white px-3 py-1.5 text-sm font-medium text-red-700 transition hover:bg-red-50 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
-                      >
-                        Eliminar
-                      </button>
-                    </div>
+                  <div className="flex shrink-0 gap-1">
+                    <button
+                      type="button"
+                      onClick={() => empezarEdicion(a)}
+                      disabled={guardando}
+                      className="rounded-full p-2.5 text-[#007AFF] transition hover:bg-[#007AFF]/10 active:scale-95 disabled:opacity-45"
+                      aria-label="Editar"
+                    >
+                      <IconPencil />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => eliminar(a.id)}
+                      disabled={guardando}
+                      className="rounded-full p-2.5 text-[#FF3B30] transition hover:bg-[#FF3B30]/10 active:scale-95 disabled:opacity-45"
+                      aria-label="Eliminar"
+                    >
+                      <IconTrash />
+                    </button>
                   </div>
                 </li>
               );
@@ -684,8 +879,8 @@ export default function Home() {
           </ul>
         </div>
 
-        <p className="mt-6 text-center text-xs text-zinc-500 dark:text-zinc-500">
-          Datos sincronizados con Supabase
+        <p className="mt-8 text-center text-[12px] text-[#8E8E93]">
+          Sincronizado con Supabase
         </p>
       </div>
     </div>
