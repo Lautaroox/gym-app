@@ -233,9 +233,9 @@ export default function Home() {
       Fecha_vencimiento: editFecha,
       cuota_al_dia: esCuotaAlDia(editFecha),
     };
-    const { data, error: dbError } = await supabase
+    const { data, error: dbError } = await (supabase as any)
       .from("alumnos")
-      .update(alumnoActualizadoPayload as any)
+      .update(alumnoActualizadoPayload)
       .eq("id", editandoId)
       .select('id, created_at, nombre, "Fecha_vencimiento", cuota_al_dia')
       .single();
