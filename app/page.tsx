@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { Session } from "@supabase/supabase-js";
+import type { Database } from "@/lib/supabase/database.types";
 
 type Alumno = {
   id: string;
@@ -10,13 +11,9 @@ type Alumno = {
   fechaVencimiento: string;
   cuotaAlDia: boolean;
 };
-type AlumnoRow = {
-  id: string;
-  created_at: string;
-  nombre: string;
-  Fecha_vencimiento: string;
-  cuota_al_dia: boolean;
-};
+type AlumnoRow = Database["public"]["Tables"]["alumnos"]["Row"];
+type AlumnoInsert = Database["public"]["Tables"]["alumnos"]["Insert"];
+type AlumnoUpdate = Database["public"]["Tables"]["alumnos"]["Update"];
 
 function inicioDelDia(d: Date) {
   const x = new Date(d);
@@ -174,13 +171,14 @@ export default function Home() {
 
     setError(null);
     setGuardando(true);
+    const nuevoAlumno: AlumnoInsert = {
+      nombre: n,
+      Fecha_vencimiento: fechaVencimiento,
+      cuota_al_dia: esCuotaAlDia(fechaVencimiento),
+    };
     const { data, error: dbError } = await supabase
       .from("alumnos")
-      .insert({
-        nombre: n,
-        Fecha_vencimiento: fechaVencimiento,
-        cuota_al_dia: esCuotaAlDia(fechaVencimiento),
-      })
+      .insert(nuevoAlumno)
       .select('id, created_at, nombre, "Fecha_vencimiento", cuota_al_dia')
       .single();
 
@@ -230,13 +228,14 @@ export default function Home() {
 
     setError(null);
     setGuardando(true);
+    const alumnoActualizadoPayload: AlumnoUpdate = {
+      nombre: n,
+      Fecha_vencimiento: editFecha,
+      cuota_al_dia: esCuotaAlDia(editFecha),
+    };
     const { data, error: dbError } = await supabase
       .from("alumnos")
-      .update({
-        nombre: n,
-        Fecha_vencimiento: editFecha,
-        cuota_al_dia: esCuotaAlDia(editFecha),
-      })
+      .update(alumnoActualizadoPayload)
       .eq("id", editandoId)
       .select('id, created_at, nombre, "Fecha_vencimiento", cuota_al_dia')
       .single();
