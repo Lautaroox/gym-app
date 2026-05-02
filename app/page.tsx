@@ -214,6 +214,7 @@ export default function Home() {
   const [fechaVencimiento, setFechaVencimiento] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nombreGimnasio, setNombreGimnasio] = useState("GymApp");
 
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [editNombre, setEditNombre] = useState("");
@@ -473,13 +474,15 @@ export default function Home() {
     return (
       <div className="flex min-h-full flex-col items-center justify-center bg-[#F2F2F7] px-6 py-12">
         <div className="mb-8 flex flex-col items-center gap-3">
-          <LogoMark />
+          <div className="scale-110">
+            <LogoMark />
+          </div>
           <div className="text-center">
             <h1 className="text-[28px] font-bold tracking-tight text-[#1C1C1E]">
-              Gimnasio
+              GymApp
             </h1>
             <p className="mt-1 text-[15px] text-[#8E8E93]">
-              Panel del dueño
+              Gestion inteligente de tu gimnasio
             </p>
           </div>
         </div>
@@ -551,37 +554,61 @@ export default function Home() {
   return (
     <div className="min-h-full bg-[#F2F2F7] px-4 pb-12 pt-6 sm:px-6">
       <div className="mx-auto max-w-lg">
-        <header className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <h1 className="text-[28px] font-bold tracking-tight text-[#1C1C1E]">
-              Alumnos
-            </h1>
-            <p className="mt-1 text-[15px] text-[#8E8E93]">
-              Cuotas y vencimientos
-            </p>
+        <header className="mb-8 rounded-[22px] bg-white px-6 py-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="scale-110">
+                <LogoMark />
+              </div>
+              <div>
+                <h1 className="text-[30px] font-bold tracking-tight text-[#1C1C1E]">
+                  {nombreGimnasio}
+                </h1>
+                <p className="mt-1 text-[15px] text-[#8E8E93]">
+                  Gestion inteligente de tu gimnasio
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={toggleFormularioAgregar}
+                disabled={guardando || authCargando}
+                className="inline-flex items-center gap-2 rounded-full bg-[#007AFF] px-5 py-2.5 text-[15px] font-semibold text-white shadow-lg shadow-[#007AFF]/28 transition duration-200 hover:bg-[#0066DD] hover:shadow-xl hover:shadow-[#007AFF]/32 active:scale-[0.98] disabled:opacity-45"
+              >
+                <IconPlus />
+                {formAbierto ? "Cerrar" : "Agregar"}
+              </button>
+              <button
+                type="button"
+                onClick={cerrarSesion}
+                disabled={authCargando || guardando}
+                className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-4 py-2.5 text-[15px] font-semibold text-[#007AFF] shadow-sm transition duration-200 hover:bg-white hover:shadow-md active:scale-[0.98] disabled:opacity-45"
+              >
+                <IconSignOut />
+                {authCargando ? "..." : "Salir"}
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-5">
+            <label
+              htmlFor="nombre-gimnasio"
+              className="mb-2 block text-[12px] font-semibold uppercase tracking-wide text-[#8E8E93]"
+            >
+              Nombre del gimnasio
+            </label>
+            <input
+              id="nombre-gimnasio"
+              type="text"
+              value={nombreGimnasio}
+              onChange={(e) => setNombreGimnasio(e.target.value)}
+              className={fieldClass}
+              placeholder="Nombre del gimnasio"
+            />
             <p className="mt-2 text-[13px] text-[#8E8E93]">
               {session.user.email}
             </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={toggleFormularioAgregar}
-              disabled={guardando || authCargando}
-              className="inline-flex items-center gap-2 rounded-full bg-[#007AFF] px-5 py-2.5 text-[15px] font-semibold text-white shadow-lg shadow-[#007AFF]/28 transition duration-200 hover:bg-[#0066DD] hover:shadow-xl hover:shadow-[#007AFF]/32 active:scale-[0.98] disabled:opacity-45"
-            >
-              <IconPlus />
-              {formAbierto ? "Cerrar" : "Agregar"}
-            </button>
-            <button
-              type="button"
-              onClick={cerrarSesion}
-              disabled={authCargando || guardando}
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-4 py-2.5 text-[15px] font-semibold text-[#007AFF] shadow-sm transition duration-200 hover:bg-white hover:shadow-md active:scale-[0.98] disabled:opacity-45"
-            >
-              <IconSignOut />
-              {authCargando ? "..." : "Salir"}
-            </button>
           </div>
         </header>
 
@@ -657,37 +684,37 @@ export default function Home() {
           </form>
         )}
 
-        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+        <section className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-[20px] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
             <div className="flex items-start justify-between">
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
                 Total
               </p>
               <IconUsers />
             </div>
-            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#1C1C1E]">
+            <p className="mt-4 text-[40px] font-bold tabular-nums tracking-tight text-[#1C1C1E]">
               {totalAlumnos}
             </p>
           </div>
-          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+          <div className="rounded-[20px] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
             <div className="flex items-start justify-between">
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
                 Al día
               </p>
               <IconCheckCircle />
             </div>
-            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#34C759]">
+            <p className="mt-4 text-[40px] font-bold tabular-nums tracking-tight text-[#34C759]">
               {alumnosAlDia}
             </p>
           </div>
-          <div className="rounded-[18px] bg-white p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
+          <div className="rounded-[20px] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]">
             <div className="flex items-start justify-between">
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#8E8E93]">
                 Vencida
               </p>
               <IconAlertCircle />
             </div>
-            <p className="mt-3 text-[32px] font-bold tabular-nums tracking-tight text-[#FF3B30]">
+            <p className="mt-4 text-[40px] font-bold tabular-nums tracking-tight text-[#FF3B30]">
               {alumnosVencidos}
             </p>
           </div>
@@ -830,7 +857,7 @@ export default function Home() {
               return (
                 <li
                   key={a.id}
-                  className="flex items-center gap-3 border-b border-[#F2F2F7] px-4 py-3.5 transition-colors duration-200 last:border-0 hover:bg-[#F2F2F7]/60"
+                  className="flex items-center gap-3 border-b-2 border-[#E5E5EA] px-5 py-4.5 transition-colors duration-200 last:border-0 hover:bg-[#F2F2F7]/60"
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#007AFF]/12 text-[17px] font-semibold text-[#007AFF]">
                     {inicialNombre(a.nombre)}
@@ -882,6 +909,9 @@ export default function Home() {
         <p className="mt-8 text-center text-[12px] text-[#8E8E93]">
           Sincronizado con Supabase
         </p>
+        <footer className="mt-4 text-center text-[13px] font-medium text-[#8E8E93]">
+          GymApp
+        </footer>
       </div>
     </div>
   );
